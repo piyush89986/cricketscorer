@@ -31,12 +31,12 @@ export default function MatchesListPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white tracking-tight">Matches & Fixtures</h1>
-          <p className="text-sm text-slate-400 mt-1">Schedule matches, assign scorers, and launch live scoring</p>
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight">Matches & Fixtures</h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1">Schedule matches, assign scorers, and launch live scoring</p>
         </div>
         <Link
           href="/dashboard/matches/new"
-          className="inline-flex items-center space-x-2 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-sm rounded-xl shadow-lg shadow-emerald-500/20 transition-all self-start sm:self-auto"
+          className="inline-flex items-center justify-center space-x-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-md shadow-blue-500/20 transition-all self-stretch sm:self-auto"
         >
           <PlusCircle className="w-4 h-4" />
           <span>Schedule Single Match</span>
@@ -44,7 +44,7 @@ export default function MatchesListPage() {
       </div>
 
       {/* Filter tabs */}
-      <div className="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-2 text-xs">
+      <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 pb-2 text-xs">
         {[
           { id: "", label: "All Matches" },
           { id: "live", label: "Live Now 🔴" },
@@ -56,8 +56,8 @@ export default function MatchesListPage() {
             onClick={() => setStatusFilter(tab.id)}
             className={`px-3.5 py-1.5 rounded-xl font-bold transition-all ${
               statusFilter === tab.id
-                ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
-                : "text-slate-400 hover:text-white"
+                ? "bg-blue-50 text-blue-700 border border-blue-200 shadow-sm"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             {tab.label}
@@ -68,13 +68,13 @@ export default function MatchesListPage() {
       {loading ? (
         <div className="p-12 text-center text-slate-400">Loading matches...</div>
       ) : matches.length === 0 ? (
-        <div className="p-12 text-center bg-[#0d1424] border border-slate-800 rounded-2xl">
-          <Calendar className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-white">No Matches Found</h3>
-          <p className="text-sm text-slate-400 mt-1">Schedule a match or generate tournament fixtures.</p>
+        <div className="p-12 text-center bg-white border border-slate-200 rounded-2xl shadow-sm">
+          <Calendar className="w-12 h-12 text-slate-400 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-slate-800">No Matches Found</h3>
+          <p className="text-sm text-slate-500 mt-1">Schedule a match or generate tournament fixtures.</p>
           <Link
             href="/dashboard/matches/new"
-            className="mt-4 inline-flex items-center space-x-2 px-4 py-2 bg-emerald-500 text-slate-950 font-bold text-xs rounded-xl"
+            className="mt-4 inline-flex items-center space-x-2 px-4 py-2.5 bg-blue-600 text-white font-bold text-xs rounded-xl shadow-md shadow-blue-500/20"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Schedule Match</span>
@@ -87,24 +87,24 @@ export default function MatchesListPage() {
             return (
               <div
                 key={m._id}
-                className={`bg-[#0d1424] border rounded-2xl p-5 flex flex-col justify-between transition-all ${
+                className={`bg-white border rounded-2xl p-5 flex flex-col justify-between transition-all shadow-sm ${
                   isLive
-                    ? "border-emerald-500/60 shadow-lg shadow-emerald-500/10"
-                    : "border-slate-800 hover:border-slate-700"
+                    ? "border-blue-400 ring-2 ring-blue-100 hover:shadow-md"
+                    : "border-slate-200 hover:border-slate-300"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between text-xs mb-3">
-                    <span className="font-semibold text-slate-400 truncate max-w-[160px]">
+                    <span className="font-bold text-slate-500 truncate max-w-[160px]">
                       {m.tournament?.name}
                     </span>
                     <span
-                      className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                      className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider ${
                         isLive
-                          ? "bg-red-500/20 text-red-400 border border-red-500/30 animate-pulse"
+                          ? "bg-red-50 text-red-600 border border-red-200 animate-pulse"
                           : m.status === "completed"
-                          ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
-                          : "bg-slate-800 text-slate-400"
+                          ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                          : "bg-slate-100 text-slate-600"
                       }`}
                     >
                       {m.status.replace("_", " ")}
@@ -112,50 +112,50 @@ export default function MatchesListPage() {
                   </div>
 
                   {/* Teams info */}
-                  <div className="space-y-2 py-2 border-y border-slate-800/80 my-2">
+                  <div className="space-y-2 py-2 border-y border-slate-100 my-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-bold text-white">{m.teamA?.name}</span>
-                      <span className="font-mono font-bold text-slate-300">
+                      <span className="font-bold text-slate-900">{m.teamA?.name}</span>
+                      <span className="font-mono font-bold text-slate-700">
                         {m.summary?.teamAScore?.runs ?? 0}/{m.summary?.teamAScore?.wickets ?? 0}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="font-bold text-white">{m.teamB?.name}</span>
-                      <span className="font-mono font-bold text-slate-300">
+                      <span className="font-bold text-slate-900">{m.teamB?.name}</span>
+                      <span className="font-mono font-bold text-slate-700">
                         {m.summary?.teamBScore?.runs ?? 0}/{m.summary?.teamBScore?.wickets ?? 0}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-slate-400 truncate mb-3">
+                  <p className="text-xs text-slate-500 truncate mb-3">
                     {m.result?.summary ? (
-                      <span className="text-emerald-400 font-semibold">{m.result.summary}</span>
+                      <span className="text-blue-700 font-bold">{m.result.summary}</span>
                     ) : (
                       <span>📍 {m.venue} • {m.overs} Overs</span>
                     )}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-800/80">
+                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-slate-100">
                   <Link
                     href={`/scorer/${m._id}`}
-                    className="px-2 py-2 text-center text-xs font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 rounded-lg transition-colors flex items-center justify-center space-x-1"
+                    className="px-2 py-2 text-center text-xs font-bold bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl transition-colors flex items-center justify-center space-x-1"
                   >
                     <Activity className="w-3.5 h-3.5" />
                     <span>Scorer</span>
                   </Link>
                   <Link
                     href={`/live/${m._id}`}
-                    className="px-2 py-2 text-center text-xs font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 rounded-lg transition-colors flex items-center justify-center space-x-1"
+                    className="px-2 py-2 text-center text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-sm transition-colors flex items-center justify-center space-x-1"
                   >
                     <Radio className="w-3.5 h-3.5" />
                     <span>Live</span>
                   </Link>
                   <Link
                     href={`/display/${m._id}`}
-                    className="px-2 py-2 text-center text-xs font-semibold bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/20 rounded-lg transition-colors flex items-center justify-center space-x-1"
+                    className="px-2 py-2 text-center text-xs font-bold bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl transition-colors flex items-center justify-center space-x-1"
                   >
-                    <Tv className="w-3.5 h-3.5" />
+                    <Tv className="w-3.5 h-3.5 text-slate-500" />
                     <span>TV Mode</span>
                   </Link>
                 </div>
@@ -167,4 +167,3 @@ export default function MatchesListPage() {
     </div>
   );
 }
-

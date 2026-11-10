@@ -14,8 +14,8 @@ export default function NewTeamPage() {
     name: "",
     shortName: "",
     city: "",
-    primaryColor: "#0284c7",
-    secondaryColor: "#0f172a",
+    primaryColor: "#2563eb",
+    secondaryColor: "#1e40af",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,26 +46,26 @@ export default function NewTeamPage() {
       <div className="flex items-center space-x-3">
         <Link
           href="/dashboard/teams"
-          className="p-2 text-slate-400 hover:text-white bg-slate-800/80 rounded-xl"
+          className="p-2 text-slate-500 hover:text-slate-800 bg-white border border-slate-200 rounded-xl shadow-sm"
         >
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-black text-white">Register New Team</h1>
-          <p className="text-xs text-slate-400">Set team branding, short initials, and city</p>
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900">Register New Team</h1>
+          <p className="text-xs text-slate-500">Set team branding, short initials, and city</p>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-center space-x-3">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center space-x-3">
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6 space-y-5">
+      <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-8 space-y-5 shadow-sm">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
             Team Full Name *
           </label>
           <input
@@ -74,13 +74,13 @@ export default function NewTeamPage() {
             placeholder="e.g. Hyderabad Hawks"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Short Code (2-4 Letters) *
             </label>
             <input
@@ -90,12 +90,12 @@ export default function NewTeamPage() {
               placeholder="e.g. HH"
               value={form.shortName}
               onChange={(e) => setForm({ ...form, shortName: e.target.value.toUpperCase() })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm uppercase font-mono font-bold focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm uppercase font-mono font-bold focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               City / Region
             </label>
             <input
@@ -103,14 +103,14 @@ export default function NewTeamPage() {
               placeholder="e.g. Hyderabad"
               value={form.city}
               onChange={(e) => setForm({ ...form, city: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Jersey Color Accent
             </label>
             <div className="flex items-center space-x-3">
@@ -120,13 +120,12 @@ export default function NewTeamPage() {
                 onChange={(e) => setForm({ ...form, primaryColor: e.target.value })}
                 className="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0"
               />
-              <span className="text-xs font-mono text-slate-300">{form.primaryColor}</span>
+              <span className="text-xs font-mono font-bold text-slate-700">{form.primaryColor}</span>
             </div>
           </div>
 
-          {/* Badge Preview */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Badge Preview
             </label>
             <div
@@ -141,7 +140,7 @@ export default function NewTeamPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-slate-950 font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all text-sm"
+          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all text-sm"
         >
           {loading ? "Registering Team..." : "Save & Continue to Squad"}
         </button>
@@ -149,4 +148,3 @@ export default function NewTeamPage() {
     </div>
   );
 }
-

@@ -60,25 +60,25 @@ export default function NewPlayerPage() {
   return (
     <div className="max-w-xl mx-auto space-y-6">
       <div className="flex items-center space-x-3">
-        <Link href="/dashboard/players" className="p-2 text-slate-400 hover:text-white bg-slate-800/80 rounded-xl">
+        <Link href="/dashboard/players" className="p-2 text-slate-500 hover:text-slate-800 bg-white border border-slate-200 rounded-xl shadow-sm">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-black text-white">Create Player Profile</h1>
-          <p className="text-xs text-slate-400">Add a reusable player to participate in tournaments</p>
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900">Create Player Profile</h1>
+          <p className="text-xs text-slate-500">Add a reusable player to participate in tournaments</p>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm flex items-center space-x-3">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center space-x-3">
           <AlertCircle className="w-5 h-5 flex-shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-[#0d1424] border border-slate-800 rounded-2xl p-6 space-y-5">
+      <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-8 space-y-5 shadow-sm">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
             Player Full Name *
           </label>
           <input
@@ -87,19 +87,19 @@ export default function NewPlayerPage() {
             placeholder="e.g. Jasprit Bumrah"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Playing Role
             </label>
             <select
               value={form.role}
               onChange={(e) => setForm({ ...form, role: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             >
               <option value="batsman">Batsman</option>
               <option value="bowler">Bowler</option>
@@ -109,13 +109,13 @@ export default function NewPlayerPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Default Team (Optional)
             </label>
             <select
               value={form.currentTeamId}
               onChange={(e) => setForm({ ...form, currentTeamId: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             >
               <option value="">-- No primary team --</option>
               {teams.map((t) => (
@@ -129,13 +129,13 @@ export default function NewPlayerPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Batting Style
             </label>
             <select
               value={form.battingStyle}
               onChange={(e) => setForm({ ...form, battingStyle: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             >
               <option value="right_hand">Right-Hand Bat</option>
               <option value="left_hand">Left-Hand Bat</option>
@@ -143,13 +143,13 @@ export default function NewPlayerPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Bowling Style
             </label>
             <select
               value={form.bowlingStyle}
               onChange={(e) => setForm({ ...form, bowlingStyle: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             >
               <option value="right_arm_fast">Right-Arm Fast</option>
               <option value="right_arm_medium">Right-Arm Medium</option>
@@ -164,7 +164,7 @@ export default function NewPlayerPage() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Jersey Number
             </label>
             <input
@@ -172,12 +172,12 @@ export default function NewPlayerPage() {
               placeholder="e.g. 93"
               value={form.jerseyNumber}
               onChange={(e) => setForm({ ...form, jerseyNumber: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
               Age (Optional)
             </label>
             <input
@@ -185,7 +185,7 @@ export default function NewPlayerPage() {
               placeholder="e.g. 28"
               value={form.age}
               onChange={(e) => setForm({ ...form, age: e.target.value })}
-              className="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:bg-white focus:border-blue-600"
             />
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function NewPlayerPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-slate-950 font-bold rounded-xl shadow-lg shadow-emerald-500/20 transition-all text-sm"
+          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all text-sm"
         >
           {loading ? "Saving Player..." : "Create Player Profile"}
         </button>
@@ -201,4 +201,3 @@ export default function NewPlayerPage() {
     </div>
   );
 }
-

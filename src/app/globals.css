@@ -4,41 +4,41 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
-    --card: 222 47% 14%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 222 47% 12%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 142 70% 45%;
-    --primary-foreground: 144 100% 98%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 33% 20%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 217 33% 22%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 142 70% 45%;
+    --accent: 221 83% 53%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 24%;
-    --input: 217 33% 24%;
-    --ring: 142 70% 45%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
     --radius: 0.75rem;
   }
 }
 
 body {
-  color: hsl(var(--foreground));
-  background-color: #080d1a;
+  color: #0f172a;
+  background-color: #f8fafc;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
@@ -46,35 +46,47 @@ body {
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d1527;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }
 
-/* Stadium glow accents */
-.stadium-glow {
-  box-shadow: 0 0 25px -5px rgba(34, 197, 94, 0.25);
+/* Subtle clean card styling */
+.cric-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
 }
 
-.stadium-gold-glow {
-  box-shadow: 0 0 25px -5px rgba(234, 179, 8, 0.3);
+.cric-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+.cric-card-hover:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.12);
 }
 
-.stadium-card {
-  background: linear-gradient(135deg, #111827 0%, #0d1424 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Blue gradient buttons */
+.btn-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+}
+.btn-blue:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
 }
 
-.tv-display-bg {
-  background: radial-gradient(circle at 50% 20%, #152238 0%, #080c16 80%, #04060a 100%);
+/* Touch friendly mobile adjustments */
+@media (max-width: 640px) {
+  button, input, select, textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+  }
 }
-
