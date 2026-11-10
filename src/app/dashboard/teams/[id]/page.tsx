@@ -143,21 +143,24 @@ export default function TeamDetailPage() {
               </p>
             ) : (
               <div className="space-y-2">
-                {squad.map((player: any) => {
-                  const isCap = team.captain?._id === player._id;
-                  const isWK = team.wicketkeeper?._id === player._id;
+                {squad.filter(Boolean).map((player: any) => {
+                  const playerId = player?._id?.toString() || player?.toString();
+                  const capId = team?.captain?._id?.toString() || team?.captain?.toString();
+                  const wkId = team?.wicketkeeper?._id?.toString() || team?.wicketkeeper?.toString();
+                  const isCap = capId && capId === playerId;
+                  const isWK = wkId && wkId === playerId;
                   return (
                     <div
-                      key={player._id}
+                      key={playerId || Math.random().toString()}
                       className="p-3 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between text-xs hover:border-blue-300 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
                         <span className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 font-mono font-bold flex items-center justify-center">
-                          #{player.jerseyNumber || 0}
+                          #{player?.jerseyNumber || 0}
                         </span>
                         <div>
                           <div className="flex items-center space-x-2">
-                            <span className="font-bold text-slate-900 text-sm">{player.name}</span>
+                            <span className="font-bold text-slate-900 text-sm">{player?.name || "Player"}</span>
                             {isCap && (
                               <span className="px-1.5 py-0.2 rounded bg-amber-100 text-amber-800 border border-amber-300 font-bold text-[10px]">
                                 C
@@ -170,14 +173,14 @@ export default function TeamDetailPage() {
                             )}
                           </div>
                           <p className="text-[10px] text-slate-500 capitalize">
-                            {player.role.replace("_", " ")} • {player.battingStyle.replace("_", " ")}
+                            {(player?.role || "Player").replace("_", " ")} • {(player?.battingStyle || "Right Hand").replace("_", " ")}
                           </p>
                         </div>
                       </div>
 
                       <div className="flex items-center space-x-2">
                         <button
-                          onClick={() => handleRemovePlayer(player._id)}
+                          onClick={() => handleRemovePlayer(player?._id || playerId)}
                           className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg transition-colors"
                           title="Remove from squad"
                         >
@@ -211,9 +214,9 @@ export default function TeamDetailPage() {
                 className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-xs focus:outline-none focus:bg-white focus:border-blue-600"
               >
                 <option value="">-- Choose registered player --</option>
-                {availablePlayers.map((p) => (
-                  <option key={p._id} value={p._id}>
-                    {p.name} ({p.role.replace("_", " ")})
+                {availablePlayers.filter(Boolean).map((p) => (
+                  <option key={p._id || Math.random().toString()} value={p._id}>
+                    {p?.name || "Player"} ({p?.role ? p.role.replace("_", " ") : "All Rounder"})
                   </option>
                 ))}
               </select>
