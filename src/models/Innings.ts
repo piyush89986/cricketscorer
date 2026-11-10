@@ -138,3 +138,4 @@ const InningsSchema = new Schema<IInnings>(
 export const Innings: Model<IInnings> =
   mongoose.models.Innings || mongoose.model<IInnings>("Innings", InningsSchema);
 export default Innings;
+

@@ -73,3 +73,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message || "Failed to register user" }, { status: 500 });
   }
 }
+

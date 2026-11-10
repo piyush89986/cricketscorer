@@ -88,3 +88,4 @@ const DeliverySchema = new Schema<IDelivery>(
 export const Delivery: Model<IDelivery> =
   mongoose.models.Delivery || mongoose.model<IDelivery>("Delivery", DeliverySchema);
 export default Delivery;
+

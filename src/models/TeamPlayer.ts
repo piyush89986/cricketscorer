@@ -29,3 +29,4 @@ TeamPlayerSchema.index({ team: 1, player: 1, tournament: 1 }, { unique: true });
 export const TeamPlayer: Model<ITeamPlayer> =
   mongoose.models.TeamPlayer || mongoose.model<ITeamPlayer>("TeamPlayer", TeamPlayerSchema);
 export default TeamPlayer;
+

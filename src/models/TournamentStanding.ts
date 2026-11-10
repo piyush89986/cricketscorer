@@ -43,3 +43,4 @@ export const TournamentStanding: Model<ITournamentStanding> =
   mongoose.models.TournamentStanding ||
   mongoose.model<ITournamentStanding>("TournamentStanding", TournamentStandingSchema);
 export default TournamentStanding;
+

@@ -46,3 +46,4 @@ export async function requireRole(req: NextRequest, allowedRoles: string[]): Pro
 
   return { user };
 }
+

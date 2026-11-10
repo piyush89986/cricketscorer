@@ -31,3 +31,4 @@ const TeamSchema = new Schema<ITeam>(
 
 export const Team: Model<ITeam> = mongoose.models.Team || mongoose.model<ITeam>("Team", TeamSchema);
 export default Team;
+

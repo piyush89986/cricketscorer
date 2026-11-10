@@ -125,3 +125,4 @@ export async function updateTournamentStandingsAfterMatch(matchId: string) {
     await standing.save();
   }
 }
+

@@ -57,3 +57,4 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json({ error: error.message || "Failed to update team" }, { status: 500 });
   }
 }
+

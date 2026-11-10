@@ -413,3 +413,4 @@ export default function TournamentDetailPage() {
     </div>
   );
 }
+

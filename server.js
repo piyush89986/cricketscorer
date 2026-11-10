@@ -61,3 +61,4 @@ app.prepare().then(() => {
     console.log(`> Socket.IO attached on path /api/socket/io`);
   });
 });
+

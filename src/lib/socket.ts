@@ -25,3 +25,4 @@ export function emitTournamentUpdate(tournamentId: string, eventName: string, da
     (global as any).io.to(`tournament:${tournamentId}`).emit(eventName, data);
   }
 }
+

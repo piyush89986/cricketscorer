@@ -127,3 +127,4 @@ Click **"Load Sample Tournament"** on the home page or use these credentials:
 | `/live` | Public live matches hub |
 | `/live/[matchId]` | Real-time live scorecard, commentary, print export |
 | `/display/[matchId]` | Stadium TV scoreboard mode with auto-cycle & fullscreen |
+

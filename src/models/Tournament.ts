@@ -77,3 +77,4 @@ const TournamentSchema = new Schema<ITournament>(
 export const Tournament: Model<ITournament> =
   mongoose.models.Tournament || mongoose.model<ITournament>("Tournament", TournamentSchema);
 export default Tournament;
+

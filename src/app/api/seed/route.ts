@@ -403,3 +403,4 @@ export async function POST() {
     return NextResponse.json({ error: error.message || "Failed to seed database" }, { status: 500 });
   }
 }
+

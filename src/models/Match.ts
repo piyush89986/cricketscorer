@@ -120,3 +120,4 @@ const MatchSchema = new Schema<IMatch>(
 
 export const Match: Model<IMatch> = mongoose.models.Match || mongoose.model<IMatch>("Match", MatchSchema);
 export default Match;
+

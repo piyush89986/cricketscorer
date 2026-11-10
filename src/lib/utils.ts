@@ -31,3 +31,4 @@ export function calculateStrikeRate(runs: number, ballsFaced: number): number {
   if (ballsFaced === 0) return 0;
   return parseFloat(((runs / ballsFaced) * 100).toFixed(2));
 }
+
