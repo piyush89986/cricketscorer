@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
 import connectToDatabase from "@/lib/mongodb";
 import Team from "@/models/Team";
 import TeamPlayer from "@/models/TeamPlayer";
 import Match from "@/models/Match";
+import User from "@/models/User";
+import Player from "@/models/Player";
+import Tournament from "@/models/Tournament";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     await connectToDatabase();
     const { id } = params;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid team ID format" }, { status: 404 });
+    }
 
     const team = await Team.findById(id)
       .populate("captain", "name jerseyNumber role")
@@ -47,6 +55,11 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     await connectToDatabase();
     const { id } = params;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid team ID format" }, { status: 404 });
+    }
+
     const body = await req.json();
 
     const team = await Team.findByIdAndUpdate(id, { $set: body }, { new: true });

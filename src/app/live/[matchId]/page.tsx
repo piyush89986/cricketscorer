@@ -15,6 +15,7 @@ import {
   Flame,
   Award,
   ChevronRight,
+  AlertCircle,
 } from "lucide-react";
 import { formatOvers, calculateRunRate, calculateRequiredRunRate } from "@/lib/utils";
 import { getSocket } from "@/lib/socket";
@@ -80,7 +81,24 @@ export default function LiveMatchDetailPage() {
 
   const { match, inningsList = [], currentInnings, recentDeliveries = [], squads } = data || {};
   if (!match) {
-    return <div className="p-16 text-center text-red-600">Match not found.</div>;
+    return (
+      <div className="bg-white border border-slate-200 rounded-3xl p-8 text-center max-w-md mx-auto my-16 shadow-sm space-y-4">
+        <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto">
+          <AlertCircle className="w-6 h-6" />
+        </div>
+        <h2 className="text-lg font-bold text-slate-900">Live Match Not Found</h2>
+        <p className="text-xs text-slate-500">
+          This match feed is not available. It may have been concluded, removed, or the link is incorrect.
+        </p>
+        <Link
+          href="/live"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Browse Live Matches</span>
+        </Link>
+      </div>
+    );
   }
 
   const isLive = match.status === "live" || match.status === "innings_break";

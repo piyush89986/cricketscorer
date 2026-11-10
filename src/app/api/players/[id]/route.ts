@@ -1,13 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
 import connectToDatabase from "@/lib/mongodb";
 import Player from "@/models/Player";
 import Innings from "@/models/Innings";
 import Match from "@/models/Match";
+import Team from "@/models/Team";
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     await connectToDatabase();
     const { id } = params;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid player ID format" }, { status: 404 });
+    }
 
     const player = await Player.findById(id).populate("currentTeam", "name shortName logo");
     if (!player) {

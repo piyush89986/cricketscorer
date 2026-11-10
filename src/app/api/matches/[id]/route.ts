@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
 import connectToDatabase from "@/lib/mongodb";
 import Match from "@/models/Match";
 import Innings from "@/models/Innings";
@@ -12,6 +13,10 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   try {
     await connectToDatabase();
     const { id } = params;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid match ID format" }, { status: 404 });
+    }
 
     const match = await Match.findById(id)
       .populate("tournament")

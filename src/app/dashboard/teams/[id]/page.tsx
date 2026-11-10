@@ -93,6 +93,27 @@ export default function TeamDetailPage() {
 
   const { team, squad = [], matches = [] } = data || {};
 
+  if (!team) {
+    return (
+      <div className="bg-white border border-slate-200 rounded-3xl p-8 text-center max-w-md mx-auto my-12 shadow-sm space-y-4">
+        <div className="w-12 h-12 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto">
+          <AlertCircle className="w-6 h-6" />
+        </div>
+        <h2 className="text-lg font-bold text-slate-900">Team Not Found</h2>
+        <p className="text-xs text-slate-500">
+          {data?.error || "We couldn't locate this team profile. It may have been deleted or the link is incorrect."}
+        </p>
+        <Link
+          href="/dashboard/teams"
+          className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Teams</span>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center space-x-3">
@@ -100,8 +121,8 @@ export default function TeamDetailPage() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-xl sm:text-2xl font-black text-slate-900">{team.name} Squad</h1>
-          <p className="text-xs text-slate-500">{team.city || "Club Franchise"} • Short Code: {team.shortName}</p>
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900">{team?.name} Squad</h1>
+          <p className="text-xs text-slate-500">{team?.city || "Club Franchise"} • Short Code: {team?.shortName}</p>
         </div>
       </div>
 

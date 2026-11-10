@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import "@/models";
 
 let cached = (global as any).mongoose;
 
